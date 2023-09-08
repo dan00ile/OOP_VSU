@@ -1,4 +1,4 @@
-package ru.vsu.cs.shul;
+package ru.vsu.cs.shul.task1;
 
 public class Main {
     public static void main(String[] args) {
