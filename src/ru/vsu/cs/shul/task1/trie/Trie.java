@@ -46,7 +46,7 @@ public class Trie {
         }
         return current.isEndOfWord();
     }
-    
+
     private boolean delete(TrieNode current, String word, int index) {
         if (index == word.length()) {
             if (!current.isEndOfWord()) {
