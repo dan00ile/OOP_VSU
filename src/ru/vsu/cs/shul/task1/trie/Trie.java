@@ -2,12 +2,12 @@ package ru.vsu.cs.shul.task1.trie;
 
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Trie {
     private final TrieNode root;
@@ -46,11 +46,7 @@ public class Trie {
         }
         return current.isEndOfWord();
     }
-
-    public boolean isEmpty() {
-        return root == null;
-    }
-
+    
     private boolean delete(TrieNode current, String word, int index) {
         if (index == word.length()) {
             if (!current.isEndOfWord()) {
@@ -108,10 +104,13 @@ public class Trie {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
+            Pattern pattern = Pattern.compile("\\P{L}+");
             while ((line = reader.readLine()) != null) {
-                String[] words = line.split(" ");
+                String[] words = pattern.split(line);
                 for (String word : words) {
-                    this.insert(word);
+                    if (!word.isEmpty()) {
+                        this.insert(word.toLowerCase());
+                    }
                 }
             }
             reader.close();
